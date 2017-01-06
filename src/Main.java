@@ -3,7 +3,7 @@
  */
 public class Main{
     public static void main(String[] args){
-        CalculateContext c = new CalculateContext(new PearsonCorelationCoefficient("Angelica", "Bill"));
+        CalculateContext c = new CalculateContext(new CosineSimilarity("Angelica", "Bill"));
         c.execute();
     }
 }

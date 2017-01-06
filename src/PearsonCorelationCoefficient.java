@@ -40,6 +40,7 @@ public class PearsonCorelationCoefficient implements Calculate{
                 userY.add(userTwoRating.get(artist));
             }
         }
+        int n = userX.size();
 
         //1. Multiply x with y and take a sum of them  ∑ 1 to n (x * y)
         double partOne = 0;
@@ -51,17 +52,31 @@ public class PearsonCorelationCoefficient implements Calculate{
 
         double partTwo = 0;
 
-        double x = 0;
-        for(int i = 0; i < userX.size(); i++){
-            x += userX.get(i);
-        }
+        double sumX = 0;
+        double sumY = 0;
+        double squaredSumX = 0;
+        double squaredSumY = 0;
 
-        double y = 0;
         for(int i = 0; i < userY.size(); i++){
-            y += userY.get(i);
+            sumX += userX.get(i);
+            sumY += userY.get(i);
+            squaredSumX += (userX.get(i) * userX.get(i) );
+            squaredSumY += (userY.get(i) * userY.get(i) );
         }
 
+        partTwo = (sumX * sumY) / n;
 
+        // 3. Get sum of each x squared
+        double partthree = 0;
+        partthree = squaredSumX -((sumX * sumX) / n);
+        partthree = Math.sqrt(partthree);
 
+        double partfour = 0;
+        partfour = squaredSumY - ((sumY * sumY) / n);
+        partfour = Math.sqrt(partfour);
+
+        double total = 0;
+        total = (partOne - partTwo) / (partthree * partfour);
+        System.out.println(total);
     }
 }
